@@ -51,3 +51,22 @@ The following matrix documents the critical vulnerabilities identified within th
 
 This structured remediation plan establishes phased defensive controls designed to systematically minimize the institution's risk surface before upcoming board audits[span_56](start_span)[span_56](end_span)[span_57](start_span)[span_57](end_span).
 
+
+### Phase 1: Immediate Emergency Lockdown (0–30 Days)
+*   **Active WAF Shielding:** Transition the network's Edge Web Application Firewall (WAF) deployment configurations out of "Monitor Only" mode directly into automated active drop/blocking mode to intercept live web exploits[span_66](start_span)[span_66](end_span)[span_67](start_span)[span_67](end_span).
+*   **Critical Input & Endpoint Patching:** Implement immediate source code parameterized queries to remediate the portal login vulnerability (`V-005`) and enforce strict token validation logic on the exposed `/v1/students` endpoint (`V-003`)[span_68](start_span)[span_68](end_span)[span_69](start_span)[span_69](end_span).
+*   **Credential Lifecycle Revocation:** Execute a mandatory, institutional password rotation lifecycle targeting default configurations across the internal ERP ecosystem (`V-007`), administrative consoles, and immediately invalidate all API keys exposed via open public `.env` repository leakages[span_70](start_span)[span_70](end_span)[span_71](start_span)[span_71](end_span).
+*   **Ingress Network Hardening:** Restrict public internet ingress traffic over Port 22 (SSH) on the Azure Dev/Test sandbox environment and secure open SMB configuration protocols on the internal backup NAS arrays (`10.20.0.99`)[span_72](start_span)[span_72](end_span)[span_73](start_span)[span_73](end_span).
+
+### Phase 2: Foundational Zero-Trust Engineering (30–90 Days)
+*   **Network Micro-Segmentation:** Deprecate the existing flat internal network architecture[span_74](start_span)[span_74](end_span)[span_75](start_span)[span_75](end_span). Enforce strict VLAN micro-segmentation, decoupling public-facing DMZ subnets (`VLAN 10`) from sensitive core database infrastructure and corporate identity management directories (`VLAN 20`)[span_76](start_span)[span_76](end_span)[span_77](start_span)[span_77](end_span).
+*   **API Security Enforcement:** Deploy secure rate-limiting properties, continuous session token verification routines, and rigorous horizontal Role-Based Access Control (RBAC) layers on all backend infrastructure connections talking to mobile gateway interfaces[span_78](start_span)[span_78](end_span)[span_79](start_span)[span_79](end_span).
+*   **Legacy Protocol Depreciation:** Formally disable legacy SMBv1 communication protocols across all internal endpoints and servers to permanently mitigate NTLM relay lateral movements[span_80](start_span)[span_80](end_span)[span_81](start_span)[span_81](end_span).
+*   **Identity & Access Management (IAM) Hardening:** Mandate Multi-Factor Authentication (MFA) across all administrative management profiles, server environments, and internal personnel systems[span_82](start_span)[span_82](end_span)[span_83](start_span)[span_83](end_span).
+
+### Phase 3: Strategic Governance & Continuous Monitoring (90–180 Days)
+*   **Continuous Vulnerability Operations:** Establish a formal VAPT program cadence, combining routine automated internal credentialed scanner assessments with annual external white-box penetration testing schedules[span_84](start_span)[span_84](end_span)[span_85](start_span)[span_85](end_span).
+*   **Centralized Secrets Management:** Migrate clear-text system variables, cryptographic keys, and database connection strings entirely out of static configuration scripts into a dedicated, enterprise-grade secrets vault infrastructure[span_86](start_span)[span_86](end_span)[span_87](start_span)[span_87](end_span).
+*   **Supply Chain & Third-Party Auditing:** Institute legally binding secure-coding compliance criteria and technical code audit metrics for all external modules deployed by third-party application vendor teams[span_88](start_span)[span_88](end_span)[span_89](start_span)[span_89](end_span).
+*   **Security Information & Event Management (SIEM):** Aggregate firewall logs, authentication records, database access registers, and endpoint telemetry into a centralized logging solution to maintain real-time situational tracking capabilities[span_90](start_span)[span_90](end_span)[span_91](start_span)[span_91](end_span).
+
