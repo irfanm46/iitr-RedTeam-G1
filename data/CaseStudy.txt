@@ -1,0 +1,23 @@
+A1. CASE STUDY NARRATIVE (Learner-Facing)
+
+"The HITS Smart Campus Breach Scare"
+
+Himalaya Institute of Technology & Sciences (HITS) is a 12,000-student deemed university in northern India. Over the last three years, HITS invested ₹18 crore in a "Smart Campus" digital transformation. Today, almost everything runs online:
+
+A Student Portal for grades, fees, and course registration.
+An ERP (finance, HR, procurement, payroll).
+A Hostel Management System linked to biometric access and mess billing.
+A Smart Attendance System using RFID cards and a face-recognition kiosk.
+A Mobile Application ("HITS Connect") for 11,400 active users.
+
+In September 2024, an anonymous post appeared on a hacker forum claiming: "HITS student database for sale — 12k records, grades + Aadhaar + phone." The Registrar panicked. A junior IT staff member admitted that the student portal "hadn't been patched in a while" and that "the API is open because the mobile app team needed it fast."
+
+The Vice-Chancellor has hired your red team to answer one question:
+
+"Could an attacker realistically compromise student records or university operations — and if so, how do we stop them?"
+
+You have been given written authorization (scope letter, Exhibit B1), a partial asset inventory, network diagrams, API documentation, sample logs, and the results of an initial OSINT sweep. The CISO wants a full VAPT report, an attack-chain diagram, a prioritized remediation roadmap, and a risk dashboard for the Board.
+
+Your job is NOT to actually hack a live system. You will simulate and reason about an attack using the provided datasets, identify vulnerabilities, build an attack chain, rate risks, and recommend fixes.
+
+Real stakes: The Board meets in 4 weeks. If you cannot show that risks are manageable, HITS may face a UGC inquiry, reputational loss, and DPDP penalties.

@@ -1,0 +1,40 @@
+	Document B1.1 — Rules of Engagement / Authorization Letter (Excerpt)																								
+																									
+																									
+	"HIMALAYA INSTITUTE OF TECHNOLOGY & SCIENCES
+PENETRATION TESTING AUTHORIZATION (SCOPE LETTER)
+
+Engagement ID: HITS-RT-2024-09
+Authorized by: Dr. R. Menon, CISO
+Test Window: 01–28 of engagement month, 09:00–18:00 IST
+Type: Grey-box (limited credentials provided for 1 student account)
+
+IN-SCOPE:
+ - portal.hits.ac.in (Student Portal)
+ - erp.hits.ac.in (ERP - read-only test acct only)
+ - hostel.hits.ac.in (Hostel Mgmt)
+ - api.hits.ac.in (Mobile API)
+ - 203.0.113.0/27 (public IP range — TEST/DUMMY range)
+ - HITS Connect Android app (APK provided)
+
+OUT-OF-SCOPE:
+ - Physical intrusion, social engineering of staff by phone
+ - Denial-of-Service / load testing
+ - Production payroll write operations
+ - Any third-party SaaS (Microsoft 365, payment gateway)
+
+EMERGENCY CONTACT: soc@hits.ac.in / +91-90000-00000
+DATA HANDLING: All extracted data must be masked in reports."																								
+																									
+	Document B1.2 — IT Environment Notes (from CISO interview)																								
+																									
+	"Public-facing web apps hosted in an on-prem DMZ + 1 cloud VM.
+Single sign-on partially implemented; ERP still uses local accounts.
+Last full patch cycle: ""about 9 months ago.""
+WAF licensed but ""in monitor-only mode.""
+Mobile API was built by a vendor (CampusSoft Pvt Ltd) in 6 weeks.
+No formal vulnerability management program."																								
+																									
+	Document B1.3 — Methodology Reference (give learners)																								
+																									
+	Learners should map findings to: PTES, OWASP Top 10 (2021), OWASP API Top 10 (2023), and CVSS v3.1.

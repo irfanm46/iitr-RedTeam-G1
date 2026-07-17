@@ -1,0 +1,1000 @@
+																									
+																									
+	E1. Simulated Scanner Output (CSV — "Nessus-style")																								
+																									
+	finding_id	asset_id	title	cve	cvss_base	severity	category	evidence_ref	status																
+	V-001	A-001	Apache 2.4.41 path traversal	CVE-2021-41773	9.8	Critical	Web Server	scan_portal.txt	Open																
+	V-002	A-002	Nginx 1.14 EOL unpatched	CVE-2019-20372	7.5	High	Web Server	scan_hostel.txt	Open																
+	V-003	A-003	API missing auth on /v1/students	N/A	9.1	Critical	API/Auth	api_test_01.log	Open																
+	V-004	A-003	IDOR on /v1/students/{id}	N/A	8.6	High	API/AuthZ	api_test_02.log	Open																
+	V-005	A-011	SQL Injection in portal login	N/A	9.8	Critical	Injection	portal_sqli.log	Open																
+	V-006	A-001	Reflected XSS in search param	N/A	6.1	Medium	XSS	portal_xss.log	Open																
+	V-007	A-005	ERP default admin creds	N/A	9	Critical	Auth	erp_login.log	Open																
+	V-008	A-007	SMBv1/NTLM relay possible	CVE-2017-0144	9.3	Critical	Network	ad_scan.log	Open																
+	V-009	A-009	Open SMB share anon read	N/A	8.1	High	Misconfig	nas_smb.log	Open																
+	V-010	A-010	Public SSH password auth	N/A	7	High	Network	ssh_scan.log	Open																
+	V-011	A-015	FortiOS SSL-VPN path traversal	CVE-2018-13379	9.8	Critical	VPN	vpn_scan.log	Open																
+	V-012	A-008	Tomcat manager weak creds	N/A	8.8	High	Auth	tomcat.log	Open																
+	V-013	A-003	Verbose error stack trace leak	N/A	5.3	Medium	Info Leak	api_test_03.log	Open																
+	V-014	A-001	Missing security headers	N/A	4.3	Medium	Config	headers.txt	Open																
+	V-015	A-011	Cleartext internal traffic	N/A	7.4	High	Crypto	traffic.pcap	Open																
+	V-016	A-003	No rate limiting on login	N/A	7.5	High	API/Brute	api_test_04.log	Open																
+	V-017	A-013	Hardcoded API key in kiosk fw	N/A	8.2	High	Secrets	fw_dump.txt	Open																
+	V-018	A-006	MS SQL xp_cmdshell enabled	N/A	8.8	High	DB	sql_config.log	Open																
+	V-019	A-016	Apache mod_cgi RCE	CVE-2021-41773	9.8	Critical	Web Server	lib_scan.txt	Open																
+	V-020	A-017	Exam portal SQLi in id param	N/A	9.1	Critical	Injection	exam_sqli.log	Open																
+	V-021	A-035	GitLab CE RCE outdated	CVE-2021-22205	9.9	Critical	RCE	gitlab_scan.log	Open																
+	V-022	A-036	Jenkins unauth script console	N/A	9.8	Critical	RCE	jenkins_scan.log	Open																
+	V-023	A-034	Hikvision NVR auth bypass	CVE-2021-36260	9.8	Critical	IoT	cctv_scan.log	Open																
+	V-024	A-039	vCenter 6.7 RCE unauth	CVE-2021-21972	9.8	Critical	RCE	vcenter_scan.log	Open																
+	V-025	A-038	Payroll DB sa default password	N/A	9	Critical	Auth	payroll_db.log	Open																
+	V-026	A-040	Legacy MySQL 5.5 multiple CVEs	N/A	9.1	Critical	DB	legacydb_scan.log	Open																
+	V-027	A-003	JWT none algorithm accepted	N/A	8.6	High	API/Auth	jwt_scan.log	Open																
+	V-028	A-007	Kerberoastable service accounts	N/A	8.1	High	Auth	kerb_scan.log	Open																
+	V-029	A-022	GPP cpassword in SYSVOL	N/A	8.1	High	Secrets	gpp_scan.log	Open																
+	V-030	A-037	Payroll IDOR payslips	N/A	8.6	High	API/AuthZ	payroll_idor.log	Open																
+	V-031	A-041	ESXi OpenSLP heap overflow RCE	CVE-2021-21974	8.8	High	RCE	esxi_scan.log	Open																
+	V-032	A-042	ESXi unpatched same as host-01	CVE-2021-21974	8.8	High	RCE	esxi_scan2.log	Open																
+	V-033	A-085	PAN-OS GlobalProtect RCE	CVE-2024-3400	10	Critical	Firewall	panos_scan.log	Open																
+	V-034	A-097	AD CS ESC1 misconfiguration	N/A	8.8	High	Auth	adcs_scan.log	Open																
+	V-035	A-098	Exchange ProxyLogon	CVE-2021-26855	9.8	Critical	RCE	exchange_scan.log	Open																
+	V-036	A-098	Exchange ProxyShell chain	CVE-2021-34473	9.8	Critical	RCE	exchange_scan2.log	Open																
+	V-037	A-124	S3 bucket public write access	N/A	9.1	Critical	Cloud Misconfig	s3_audit.log	Open																
+	V-038	A-130	MongoDB no auth internet exposed	N/A	9.8	Critical	DB	mongo_scan.log	Open																
+	V-039	A-071	Elasticsearch no auth exposed	N/A	9.1	Critical	DB	elastic_scan.log	Open																
+	V-040	A-067	Docker API exposed 2375	N/A	9.8	Critical	RCE	docker_scan.log	Open																
+	V-041	A-068	Kubernetes dashboard no auth	N/A	9.1	Critical	Misconfig	k8s_scan.log	Open																
+	V-042	A-089	Vault sealed-state info leak	N/A	5.3	Medium	Info Leak	vault_scan.log	Open																
+	V-043	A-055	OpenSSH 7.6 user enumeration	CVE-2018-15473	5.3	Medium	Network	sftp_scan.log	Open																
+	V-044	A-092	Confluence OGNL injection RCE	CVE-2021-26084	9.8	Critical	RCE	confluence_scan.log	Open																
+	V-045	A-093	Jira unauth user enumeration	CVE-2020-14181	5.3	Medium	Info Leak	jira_scan.log	Open																
+	V-046	A-153	Win Server 2008 EOL unsupported	N/A	9.8	Critical	OS EOL	legacy_scan.log	Open																
+	V-047	A-155	SMBv1 enabled Server 2003	CVE-2017-0144	9.3	Critical	Network	smb1_scan.log	Open																
+	V-048	A-156	Oracle 11g multiple known CVEs	N/A	9	Critical	DB	oracle_scan.log	Open																
+	V-049	A-164	Moodle SQLi in enrolment	CVE-2021-32474	8.8	High	Injection	moodle_scan.log	Open																
+	V-050	A-131	Mobile API broken object auth	N/A	8.6	High	API/AuthZ	mobile_api.log	Open																
+	V-051	A-133	Payment gateway weak TLS 1.0	N/A	7.4	High	Crypto	payment_tls.log	Open																
+	V-052	A-138	Scholarship portal SQLi	N/A	9.1	Critical	Injection	scholarship_sqli.log	Open																
+	V-053	A-140	Medical portal IDOR records	N/A	8.6	High	API/AuthZ	medical_idor.log	Open																
+	V-054	A-141	Medical DB weak credentials	N/A	8.1	High	Auth	medical_db.log	Open																
+	V-055	A-048	Grievance portal stored XSS	N/A	6.1	Medium	XSS	grievance_xss.log	Open																
+	V-056	A-118	Wallet server logic flaw negative balance	N/A	8.2	High	Business Logic	wallet_test.log	Open																
+	V-057	A-119	Wallet DB cleartext PINs	N/A	8.1	High	Crypto	wallet_db.log	Open																
+	V-058	A-114	Biometric server unencrypted templates	N/A	8.6	High	Crypto	biometric_scan.log	Open																
+	V-059	A-113	Door access controller default creds	N/A	8	High	Auth	door_scan.log	Open																
+	V-060	A-111	MQTT broker no authentication	N/A	7.5	High	IoT	mqtt_scan.log	Open																
+	V-061	A-112	HVAC BACnet exposed unauth	N/A	6.5	Medium	IoT	hvac_scan.log	Open																
+	V-062	A-019	Apache 2.4.29 EOL outdated	CVE-2019-0211	7.8	High	Web Server	alumni_scan.log	Open																
+	V-063	A-046	Helpdesk app reflected XSS	N/A	6.1	Medium	XSS	helpdesk_xss.log	Open																
+	V-064	A-047	Helpdesk DB weak credentials	N/A	7.5	High	Auth	helpdesk_db.log	Open																
+	V-065	A-049	Grievance DB SQLi via API	N/A	9.1	Critical	Injection	grievance_sqli.log	Open																
+	V-066	A-018	Placement IIS directory listing	N/A	5.3	Medium	Misconfig	placement_scan.log	Open																
+	V-067	A-018	Placement file upload RCE	N/A	9.8	Critical	RCE	placement_upload.log	Open																
+	V-068	A-026	Hostel DB exposed to all VLANs	N/A	7.4	High	Network	hostel_db.log	Open																
+	V-069	A-027	Attendance DB default postgres pw	N/A	8.1	High	Auth	attendance_db.log	Open																
+	V-070	A-028	Keycloak outdated SSRF	CVE-2020-10770	6.5	Medium	SSRF	keycloak_scan.log	Open																
+	V-071	A-028	Keycloak open redirect	N/A	5.4	Medium	Misconfig	keycloak_scan2.log	Open																
+	V-072	A-030	Jump host RDP NLA disabled	N/A	7.5	High	Network	jump_scan.log	Open																
+	V-073	A-030	BlueKeep RDP RCE possible	CVE-2019-0708	9.8	Critical	RCE	bluekeep_scan.log	Open																
+	V-074	A-023	Server 2012R2 SMB signing disabled	N/A	7.5	High	Network	smb_signing.log	Open																
+	V-075	A-024	PrintNightmare spooler RCE	CVE-2021-34527	8.8	High	RCE	printnightmare.log	Open																
+	V-076	A-095	DNS zone transfer allowed	N/A	5.3	Medium	Misconfig	dns_axfr.log	Open																
+	V-077	A-020	BIND 9.11 cache poisoning	CVE-2021-25220	6.8	Medium	Network	bind_scan.log	Open																
+	V-078	A-012	WLC outdated mgmt over HTTP	N/A	7.4	High	Crypto	wlc_scan.log	Open																
+	V-079	A-082	Core switch default SNMP public	N/A	7.5	High	Misconfig	snmp_scan.log	Open																
+	V-080	A-084	Edge router SSH weak ciphers	N/A	5.9	Medium	Crypto	router_scan.log	Open																
+	V-081	A-086	Internal FW permissive any-any rule	N/A	8.1	High	Misconfig	fw_rules.log	Open																
+	V-082	A-125	Cloud RDS publicly accessible	N/A	8.6	High	Cloud Misconfig	rds_audit.log	Open																
+	V-083	A-129	ElastiCache Redis no auth	N/A	7.5	High	DB	redis_scan.log	Open																
+	V-084	A-122	Hadoop HDFS web UI exposed	N/A	7.5	High	Misconfig	hadoop_scan.log	Open																
+	V-085	A-126	Lambda overprivileged IAM role	N/A	7.6	High	Cloud Misconfig	lambda_audit.log	Open																
+	V-086	A-090	Nexus repo unauth artifact read	N/A	7.5	High	Misconfig	nexus_scan.log	Open																
+	V-087	A-065	Artifactory anonymous access	N/A	7.5	High	Misconfig	artifactory_scan.log	Open																
+	V-088	A-064	Dev DB prod data copy exposed	N/A	8.6	High	Data Exposure	devdb_scan.log	Open																
+	V-089	A-063	Staging API debug mode enabled	N/A	7.5	High	Info Leak	staging_api.log	Open																
+	V-090	A-061	Dev portal source map exposed	N/A	5.3	Medium	Info Leak	devportal_scan.log	Open																
+	V-091	A-062	Test portal default creds admin/admin	N/A	8.8	High	Auth	testportal_scan.log	Open																
+	V-092	A-148	Veeam backup RCE deserialization	CVE-2022-26500	8.8	High	RCE	veeam_scan.log	Open																
+	V-093	A-148	Backup credentials stored cleartext	N/A	8.1	High	Secrets	veeam_creds.log	Open																
+	V-094	A-150	DR domain controller unpatched	CVE-2020-1472	10	Critical	Auth	zerologon_dr.log	Open																
+	V-095	A-007	Zerologon Netlogon priv esc	CVE-2020-1472	10	Critical	Auth	zerologon.log	Open																
+	V-096	A-164	Moodle outdated XSS in forum	N/A	6.1	Medium	XSS	moodle_xss.log	Open																
+	V-097	A-166	Proctoring server file upload RCE	N/A	9.8	Critical	RCE	proctor_upload.log	Open																
+	V-098	A-131	Mobile API JWT secret weak	N/A	8.1	High	API/Auth	mobile_jwt.log	Open																
+	V-099	A-132	Push service SSRF internal scan	N/A	7.7	High	SSRF	push_ssrf.log	Open																
+	V-100	A-134	Result service IDOR view marks	N/A	8.6	High	API/AuthZ	result_idor.log	Open																
+	V-101	A-137	Hostel allotment SQLi	N/A	9.1	Critical	Injection	hostel_sqli.log	Open																
+	V-102	A-139	Transport portal open redirect	N/A	4.7	Medium	Misconfig	transport_scan.log	Open																
+	V-103	A-142	Research grants app CSRF	N/A	6.5	Medium	CSRF	grants_csrf.log	Open																
+	V-104	A-144	Library DB SQLi search	N/A	8.8	High	Injection	library_sqli.log	Open																
+	V-105	A-054	Roundcube webmail stored XSS	CVE-2020-12640	6.1	Medium	XSS	webmail_xss.log	Open																
+	V-106	A-099	Skype for Business EOL	N/A	7.5	High	OS EOL	skype_scan.log	Open																
+	V-107	A-100	Terminal server weak RDP encryption	N/A	5.9	Medium	Crypto	ts_scan.log	Open																
+	V-108	A-107	Windows 7 EOL lab PCs	N/A	9.8	Critical	OS EOL	win7_scan.log	Open																
+	V-109	A-108	Windows 7 SMB EternalBlue	CVE-2017-0144	9.3	Critical	RCE	eternalblue.log	Open																
+	V-110	A-117	Canteen POS hardcoded DB string	N/A	7.5	High	Secrets	pos_scan.log	Open																
+																									
+																									
+	E2. RISK RATING WORKSHEET (blank template)																								
+	finding_id	asset_id	title	severity	likelihood (1-5)	impact (1-5)	risk_score (L×I)	risk_level	business_context	recommended_action	priority	owner	target_date												
+	V-001	A-001	Apache path traversal	Critical																					
+	V-002	A-002	Nginx EOL unpatched	High																					
+	V-003	A-003	API missing auth	Critical																					
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									
+																									

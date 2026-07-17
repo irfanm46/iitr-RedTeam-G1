@@ -1,0 +1,36 @@
+DUMMY LOGS
+
+Web Access Log (portal-web01) — portal_access.log
+
+
+"203.0.113.55 - - [12/Sep:09:14:02] ""GET /login HTTP/1.1"" 200 1432
+198.51.100.77 - - [12/Sep:09:15:31] ""POST /login HTTP/1.1"" 200 540  user=admin' OR '1'='1
+198.51.100.77 - - [12/Sep:09:15:33] ""GET /dashboard?role=admin HTTP/1.1"" 200 9921
+198.51.100.77 - - [12/Sep:09:16:10] ""GET /search?q=<script>alert(1)</script> HTTP/1.1"" 200 220
+198.51.100.77 - - [12/Sep:09:18:44] ""GET /export/students.csv HTTP/1.1"" 200 4889201
+185.220.101.5 - - [12/Sep:02:03:09] ""POST /login HTTP/1.1"" 401 90  (x420 attempts - brute force)"
+
+
+API Gateway Log — api_gw.log
+
+
+"[12/Sep 09:20:01] 198.51.100.77 POST /v1/auth/login user=test 200 token_issued
+[12/Sep 09:20:05] 198.51.100.77 GET /v1/students 200 size=2.1MB  <-- no-auth dump
+[12/Sep 09:20:40] 198.51.100.77 GET /v1/students/10455 200  (token=student_2031) IDOR
+[12/Sep 09:21:00] 198.51.100.77 GET /v1/students/10456 200
+[12/Sep 09:21:01] 198.51.100.77 GET /v1/students/10457 200  <-- sequential enumeration"
+
+
+Auth / AD Security Log — ad_security.log
+
+"[12/Sep 11:02:13] EventID 4625 Failed logon admin SRC=10.20.0.99 (NAS)
+[12/Sep 11:05:00] EventID 4624 Successful logon svc_backup SRC=10.20.0.99
+[12/Sep 11:07:22] NTLM relay attempt detected SRC=10.20.0.30 -> ad-ldap
+[12/Sep 11:30:00] EventID 4672 Special privileges assigned to svc_backup"
+
+
+ Firewall Log — fw.log
+
+"[12/Sep 02:00:00] ALLOW TCP 185.220.101.5 -> 203.0.113.25:443 (VPN)
+[12/Sep 02:01:11] ALLOW TCP 185.220.101.5 -> 198.51.100.40:22 (Cloud SSH)
+[12/Sep 02:05:00] ALLOW inbound 0.0.0.0/0 -> 198.51.100.40:22  <-- world-open SSH"
