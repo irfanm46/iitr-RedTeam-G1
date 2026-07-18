@@ -4,7 +4,7 @@ Smart Campus Security Assessment
 Prepared For
 Himalaya Institute of Technology & Sciences (HITS)
 ________________________________________
-Client
+Client -
 Himalaya Institute of Technology & Sciences (HITS)
 ________________________________________
 Assessment Type
