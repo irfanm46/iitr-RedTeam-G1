@@ -1,0 +1,328 @@
+
+OSINT Assessment Report
+Project: HITS University Security Assessment
+ Module: Open Source Intelligence (OSINT)
+ Analyst: Group 1 
+
+1. Executive Summary
+The OSINT assessment identified a significant external attack surface. Publicly available information revealed exposed infrastructure, leaked credentials, hidden subdomains, employee information, development environments, and sensitive documents.
+A motivated attacker could gather enough intelligence to perform targeted attacks without requiring insider access. The combination of exposed internet services, leaked GitHub secrets, publicly indexed documents, and vulnerable APIs substantially increases the likelihood of compromise.
+More than 110 OSINT findings were collected, with nearly half directly exposing internal systems or sensitive information.
+
+2. OSINT Findings Summary
+Source
+Findings
+Risk
+Google Dorking
+18
+High
+GitHub
+19
+Critical
+Shodan
+18
+Critical
+Pastebin
+12
+Critical
+LinkedIn
+12
+Medium
+crt.sh
+8
+Medium
+DNS Records
+3
+Medium
+Wayback Machine
+4
+Low
+Twitter/X
+3
+Low
+WHOIS
+2
+Low
+Forums
+2
+Medium
+YouTube
+2
+Low
+Google Maps
+1
+Low
+Facebook
+1
+Low
+
+
+Most Critical OSINT Discoveries
+Credential Exposure
+AWS Keys (.env)
+API Keys
+JWT Secret
+Database Passwords
+Jenkins Secrets
+Terraform State File
+SSH Private Key
+SMTP Credentials
+VPN Configuration
+Backup Credentials
+Business Impact
+An attacker can bypass exploitation entirely by authenticating with leaked credentials.
+
+Internet-Exposed Services
+Shodan identified:
+API Gateway
+Exchange OWA
+FortiGate VPN
+MongoDB
+Elasticsearch
+Jenkins
+Confluence
+GitLab
+RabbitMQ
+Grafana
+Kibana
+phpMyAdmin
+RDP
+Roundcube
+Memcached
+Moodle
+Proctoring Server
+Business Impact
+Many of these expose authentication portals or management interfaces directly to the Internet, increasing the likelihood of compromise.
+
+Information Leakage
+Google indexing exposed:
+SQL backups
+Config files
+phpinfo()
+Swagger Documentation
+Internal IP Scheme
+Upload directories
+Log files
+Session tokens
+Employee spreadsheets
+
+Employee Intelligence
+LinkedIn reveals:
+Email format
+firstname.lastname@hits.ac.in
+IT administrators
+Infrastructure team
+Finance IT staff
+Firewall model
+Technology stack
+Vendors
+Security team size
+This enables phishing and password spraying.
+
+Attack Surface Summary
+Public Services
+DMZ
+Portal Web Server
+Hostel Server
+API Gateway
+Cloud
+Public SSH
+Cloud VM
+VPN
+FortiGate
+Mail
+Exchange OWA
+Roundcube
+Developer Services
+Jenkins
+GitLab
+Confluence
+
+Vulnerability Overview
+The Nessus-style scan contains 110 vulnerabilities.
+Severity distribution:
+Severity
+Count
+Critical
+31
+High
+58
+Medium
+21
+
+Major categories:
+SQL Injection
+Authentication
+API Authorization
+Remote Code Execution
+Information Disclosure
+Cloud Misconfiguration
+Weak Credentials
+Secrets Exposure
+Network Misconfiguration
+
+1. Which THREE issues should be fixed first?
+Issue 1 – Broken Authentication and Student API Exposure
+Related findings
+OSINT
+O-050 Swagger Docs
+O-027 API Endpoints
+O-004 API Gateway
+Vulnerabilities
+V-003 Missing Authentication
+V-004 IDOR
+V-016 No Rate Limiting
+V-027 JWT None Algorithm
+Logs confirm:
+GET /v1/students
+
+200
+
+2.1 MB dump
+Business Impact
+This directly exposes student personal records, academic information, and potentially regulated personal data. It creates legal, regulatory, and reputational risk for the university.
+Priority: Critical
+
+Issue 2 – Internet-Exposed Administrative Systems with Leaked Secrets
+Evidence:
+GitHub
+AWS Keys
+SSH Keys
+Jenkins Secrets
+Terraform State
+Vault Password
+API Keys
+Shodan
+Jenkins
+GitLab
+Exchange
+VPN
+MongoDB
+Elasticsearch
+Business Impact
+Compromise of these systems could allow attackers to gain administrative access, deploy ransomware, steal intellectual property, or disrupt university operations.
+Priority: Critical
+
+Issue 3 – SQL Injection in Portal and Exam Systems
+Related vulnerabilities
+V-005 Portal SQLi
+V-020 Exam SQLi
+V-052 Scholarship SQLi
+V-065 Grievance SQLi
+V-101 Hostel SQLi
+V-104 Library SQLi
+Logs show
+admin' OR '1'='1
+followed by
+students.csv
+Business Impact
+SQL injection enables direct access to student, staff, financial, and examination databases, leading to confidentiality breaches and service disruption.
+Priority: Critical
+
+2. Build the most realistic attack chain
+Step 1
+Google Dorking identifies:
+Swagger documentation
+SQL backup
+Internal IP ranges
+Login portals
+↓
+Step 2
+GitHub reveals
+JWT Secret
+API Keys
+AWS Credentials
+↓
+Step 3
+Shodan discovers
+API Gateway
+VPN
+Jenkins
+GitLab
+↓
+Step 4
+Attacker exploits
+Missing Authentication
+
++
+
+IDOR
+↓
+Step 5
+Downloads
+/v1/students
+↓
+Step 6
+Uses SQL Injection
+Portal Login
+↓
+Step 7
+Extracts
+Student records
+Staff accounts
+Password hashes
+↓
+Step 8
+Uses leaked VPN credentials
+↓
+Step 9
+Moves laterally
+AD
+ERP
+Backup NAS
+↓
+Step 10
+Obtains complete student database
+
+Could an external attacker reach student records without insider help?
+Yes.
+Evidence supporting this conclusion:
+Public API lacks authentication (V-003).
+IDOR allows unauthorized access to other students' records (V-004).
+SQL injection exists in the portal (V-005).
+API documentation and endpoints are publicly indexed (O-050, O-027).
+Logs show successful retrieval of /v1/students and sequential enumeration of records.
+Leaked credentials and exposed management services provide additional attack paths.
+The attack chain relies solely on publicly available information and externally reachable systems.
+
+3. One major control recommendation
+Deploy a Centralized Identity and Access Management (IAM) platform with MFA
+Examples include Microsoft Entra ID, Okta, or another enterprise IAM solution integrated with privileged access management.
+Why this should be prioritized
+This single investment reduces risk across multiple attack vectors:
+Prevents credential abuse from leaked passwords and keys.
+Enforces MFA for VPN, GitLab, Jenkins, Exchange, and cloud services.
+Supports conditional access and stronger authentication.
+Simplifies identity governance and access reviews.
+Reduces the impact of phishing and password spraying.
+While application vulnerabilities (such as SQL injection) still require remediation, strengthening identity controls significantly lowers the likelihood of successful compromise using exposed credentials, which are prevalent in the OSINT findings.
+
+4. Executive Summary for the Vice Chancellor.
+The assessment found that sensitive university information, including credentials, system details, and internet-facing services, is publicly exposed through multiple OSINT sources. Several critical vulnerabilities, particularly in the student API and web portals, could allow unauthorized access to student records without insider assistance. Evidence from simulated logs demonstrates realistic exploitation paths from public reconnaissance to data access. Immediate priorities are securing exposed services, fixing authentication and injection flaws, and removing leaked secrets. Investing in enterprise identity protection with MFA, alongside rapid remediation of critical vulnerabilities, will significantly reduce institutional cyber risk.
+
+Overall Risk Rating
+Category
+Rating
+Confidentiality
+Critical
+Integrity
+High
+Availability
+High
+Privacy
+Critical
+Regulatory Compliance
+High
+Overall Organizational Risk
+Critical
+
+
+
+
+
+
+
+
+
+
+
