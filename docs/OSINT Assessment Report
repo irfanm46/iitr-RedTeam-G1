@@ -4,301 +4,540 @@ Project: HITS University Security Assessment
  Module: Open Source Intelligence (OSINT)
  Analyst: Group 1 
 
-1. Executive Summary
+1. General Overview
+1.1 Confidentiality Statement
+This document contains confidential security assessment results prepared exclusively for the management of Himalaya Institute of Technology & Sciences (HITS). 
+The information contained herein is intended solely for authorized personnel and must not be disclosed, reproduced, or distributed without prior written authorization from the client.
+
+1.2 Disclaimer
+This assessment was performed under the signed Rules of Engagement (ROE) and Authorization Letter. 
+Testing activities were restricted to the agreed scope and timeline. 
+Results represent the security posture observed during the assessment period and should not be considered a guarantee of future security.
+
+1.3 Contact Information
+Role
+Organization
+Client
+Himalaya Institute of Technology & Sciences
+Engagement
+Red Team Assessment
+Assessment Team
+Group 1 Red Team
+Assessment Type
+Grey Box
+Report Version
+1.0
+
+2 Assessment Overview
+2.1 Assessment Components
+2.1.1 Open Source Intelligence (OSINT)
+Objective:
+To identify publicly accessible information that could assist an external attacker in planning targeted attacks without direct interaction with internal systems.
+Sources Used
+Google Dorking
+GitHub
+Shodan
+Certificate Transparency Logs
+DNS Enumeration
+LinkedIn
+Pastebin
+Wayback Machine
+WHOISThe OSINT assessment identified a significant external attack surface exposing infrastructure information, credentials, internal documentation, and development artifacts
+Social Media
+Public Job Portals
+
+
+2.1.2 Vulnerability Assessment
+(Handled by another team.)
+
+2.1.3 Penetration Testing
+(Handled by another team.)
+
+3. Executive Summary
+3.1 Overview
 The OSINT assessment identified a significant external attack surface. Publicly available information revealed exposed infrastructure, leaked credentials, hidden subdomains, employee information, development environments, and sensitive documents.
 A motivated attacker could gather enough intelligence to perform targeted attacks without requiring insider access. The combination of exposed internet services, leaked GitHub secrets, publicly indexed documents, and vulnerable APIs substantially increases the likelihood of compromise.
 More than 110 OSINT findings were collected, with nearly half directly exposing internal systems or sensitive information.
 
-2. OSINT Findings Summary
-Source
-Findings
-Risk
-Google Dorking
-18
-High
-GitHub
-19
-Critical
-Shodan
-18
-Critical
-Pastebin
-12
-Critical
-LinkedIn
-12
-Medium
-crt.sh
-8
-Medium
-DNS Records
-3
-Medium
-Wayback Machine
-4
-Low
-Twitter/X
-3
-Low
-WHOIS
-2
-Low
-Forums
-2
-Medium
-YouTube
-2
-Low
-Google Maps
-1
-Low
-Facebook
-1
-Low
-
-
-Most Critical OSINT Discoveries
-Credential Exposure
-AWS Keys (.env)
-API Keys
-JWT Secret
-Database Passwords
-Jenkins Secrets
-Terraform State File
-SSH Private Key
-SMTP Credentials
-VPN Configuration
-Backup Credentials
-Business Impact
-An attacker can bypass exploitation entirely by authenticating with leaked credentials.
-
-Internet-Exposed Services
-Shodan identified:
-API Gateway
-Exchange OWA
-FortiGate VPN
-MongoDB
-Elasticsearch
-Jenkins
-Confluence
-GitLab
-RabbitMQ
-Grafana
-Kibana
-phpMyAdmin
-RDP
-Roundcube
-Memcached
-Moodle
-Proctoring Server
-Business Impact
-Many of these expose authentication portals or management interfaces directly to the Internet, increasing the likelihood of compromise.
-
-Information Leakage
-Google indexing exposed:
-SQL backups
-Config files
-phpinfo()
-Swagger Documentation
-Internal IP Scheme
-Upload directories
-Log files
-Session tokens
-Employee spreadsheets
-
-Employee Intelligence
-LinkedIn reveals:
-Email format
-firstname.lastname@hits.ac.in
-IT administrators
-Infrastructure team
-Finance IT staff
-Firewall model
-Technology stack
-Vendors
-Security team size
-This enables phishing and password spraying.
-
-Attack Surface Summary
-Public Services
-DMZ
-Portal Web Server
-Hostel Server
-API Gateway
-Cloud
-Public SSH
-Cloud VM
-VPN
-FortiGate
-Mail
-Exchange OWA
-Roundcube
-Developer Services
-Jenkins
-GitLab
-Confluence
-
-Vulnerability Overview
-The Nessus-style scan contains 110 vulnerabilities.
-Severity distribution:
+3.2 Severity Rating
 Severity
 Count
 Critical
-31
+0
 High
-58
+29
 Medium
-21
+43
+Low
+38
 
-Major categories:
-SQL Injection
-Authentication
-API Authorization
-Remote Code Execution
+3.3 Vulnerability Status
+Status
+Count
 Information Disclosure
-Cloud Misconfiguration
-Weak Credentials
-Secrets Exposure
-Network Misconfiguration
+45
+Credential Exposure
+18
+Infrastructure Exposure
+27
+Technology Disclosure
+20
 
-1. Which THREE issues should be fixed first?
-Issue 1 – Broken Authentication and Student API Exposure
-Related findings
-OSINT
-O-050 Swagger Docs
-O-027 API Endpoints
-O-004 API Gateway
-Vulnerabilities
-V-003 Missing Authentication
-V-004 IDOR
-V-016 No Rate Limiting
-V-027 JWT None Algorithm
-Logs confirm:
-GET /v1/students
 
-200
+3.4 Security Posture
+Overall Security Rating
+High Risk
+Reason
+Public exposure of infrastructure, credentials, 
+development repositories and administrative services significantly reduces attacker effort.
 
-2.1 MB dump
-Business Impact
-This directly exposes student personal records, academic information, and potentially regulated personal data. It creates legal, regulatory, and reputational risk for the university.
-Priority: Critical
-
-Issue 2 – Internet-Exposed Administrative Systems with Leaked Secrets
-Evidence:
-GitHub
-AWS Keys
-SSH Keys
-Jenkins Secrets
-Terraform State
-Vault Password
-API Keys
-Shodan
-Jenkins
-GitLab
-Exchange
-VPN
-MongoDB
-Elasticsearch
-Business Impact
-Compromise of these systems could allow attackers to gain administrative access, deploy ransomware, steal intellectual property, or disrupt university operations.
-Priority: Critical
-
-Issue 3 – SQL Injection in Portal and Exam Systems
-Related vulnerabilities
-V-005 Portal SQLi
-V-020 Exam SQLi
-V-052 Scholarship SQLi
-V-065 Grievance SQLi
-V-101 Hostel SQLi
-V-104 Library SQLi
-Logs show
-admin' OR '1'='1
-followed by
-students.csv
-Business Impact
-SQL injection enables direct access to student, staff, financial, and examination databases, leading to confidentiality breaches and service disruption.
-Priority: Critical
-
-2. Build the most realistic attack chain
-Step 1
-Google Dorking identifies:
-Swagger documentation
-SQL backup
-Internal IP ranges
-Login portals
-↓
-Step 2
-GitHub reveals
-JWT Secret
-API Keys
-AWS Credentials
-↓
-Step 3
-Shodan discovers
-API Gateway
-VPN
-Jenkins
-GitLab
-↓
-Step 4
-Attacker exploits
-Missing Authentication
-
-+
-
-IDOR
-↓
-Step 5
-Downloads
-/v1/students
-↓
-Step 6
-Uses SQL Injection
-Portal Login
-↓
-Step 7
-Extracts
-Student records
-Staff accounts
-Password hashes
-↓
-Step 8
-Uses leaked VPN credentials
-↓
-Step 9
-Moves laterally
-AD
+3.5 Scope
+In Scope
+portal.hits.ac.in
+api.hits.ac.in
+hostel.hits.ac.in
 ERP
-Backup NAS
-↓
-Step 10
-Obtains complete student database
+Public IPs
+Public repositories
+Public cloud assets
 
-Could an external attacker reach student records without insider help?
-Yes.
-Evidence supporting this conclusion:
-Public API lacks authentication (V-003).
-IDOR allows unauthorized access to other students' records (V-004).
-SQL injection exists in the portal (V-005).
-API documentation and endpoints are publicly indexed (O-050, O-027).
-Logs show successful retrieval of /v1/students and sequential enumeration of records.
-Leaked credentials and exposed management services provide additional attack paths.
-The attack chain relies solely on publicly available information and externally reachable systems.
+3.6 – Graphical Summary of Key Findings
+Based on your 110 OSINT findings, the following percentages can be used.
 
-3. One major control recommendation
-Deploy a Centralized Identity and Access Management (IAM) platform with MFA
-Examples include Microsoft Entra ID, Okta, or another enterprise IAM solution integrated with privileged access management.
-Why this should be prioritized
-This single investment reduces risk across multiple attack vectors:
-Prevents credential abuse from leaked passwords and keys.
-Enforces MFA for VPN, GitLab, Jenkins, Exchange, and cloud services.
-Supports conditional access and stronger authentication.
-Simplifies identity governance and access reviews.
-Reduces the impact of phishing and password spraying.
-While application vulnerabilities (such as SQL injection) still require remediation, strengthening identity controls significantly lowers the likelihood of successful compromise using exposed credentials, which are prevalent in the OSINT findings.
+3.6.1 Findings by Source
+Source
+Count
+Percentage
+GitHub
+18
+16.4%
+Shodan
+17
+15.5%
+Google Dorking
+15
+13.6%
+LinkedIn
+13
+11.8%
+Pastebin
+11
+10.0%
+Certificate Transparency (crt.sh)
+8
+7.3%
+Wayback Machine
+5
+4.5%
+DNS Records
+4
+3.6%
+Twitter/X
+4
+3.6%
+WHOIS / WHOIS History
+2
+1.8%
+YouTube
+2
+1.8%
+Forums / Reddit / Job Portals / Google Maps
+11
+10.0%
 
-4. Executive Summary for the Vice Chancellor.
-The assessment found that sensitive university information, including credentials, system details, and internet-facing services, is publicly exposed through multiple OSINT sources. Several critical vulnerabilities, particularly in the student API and web portals, could allow unauthorized access to student records without insider assistance. Evidence from simulated logs demonstrates realistic exploitation paths from public reconnaissance to data access. Immediate priorities are securing exposed services, fixing authentication and injection flaws, and removing leaked secrets. Investing in enterprise identity protection with MFA, alongside rapid remediation of critical vulnerabilities, will significantly reduce institutional cyber risk.
+3.6.2 Findings by Severity
+Using the provided dataset:
+Severity
+Count
+Percentage
+High
+33
+30%
+Medium
+45
+41%
+Low
+32
+29%
+
+3.6.3 Findings by Relevance
+Relevance
+Count
+Percentage
+Direct
+66
+60%
+Indirect
+44
+40%
+
+3.6.4 Findings by Category
+Rather than 110 individual findings, classifing into 10 categories.
+Category
+Findings
+Percentage
+Credential Exposure
+17
+15%
+Internet-facing Services
+18
+16%
+Information Disclosure
+16
+15%
+Source Code Exposure
+13
+12%
+Infrastructure Enumeration
+11
+10%
+Technology Disclosure
+10
+9%
+Social Engineering Intelligence
+9
+8%
+Cloud Exposure
+6
+5%
+Development Assets
+5
+5%
+Miscellaneous
+5
+5%
+
+3.7 Post Mitigation Status
+Category	Before	After
+Public Credentials	High	Low
+Exposed Servers	High	Medium
+Information Leakage	High	Low
+
+3.8 Vulnerability Overview
+Category
+Count
+GitHub Secret Exposure
+14
+Shodan Exposure
+18
+Google Dorks
+15
+Social Media Intelligence
+13
+Certificate Transparency
+8
+Paste Sites
+11
+DNS Enumeration
+6
+Others
+Remaining
+
+
+Section 4 – Detailed OSINT Findings
+Instead of documenting 110 findings,  created gourp of 10 findings.
+
+Finding OSINT-01
+Publicly Exposed Credentials and Secrets
+Description
+Multiple GitHub repositories and publicly accessible paste sites contained sensitive credentials, including API keys, AWS access keys, SSH private keys, Jenkins secrets, JWT secrets, and Terraform state files.
+Sources
+GitHub
+Pastebin
+Related Findings
+O-002	GitHub	Leaked API key in CampusSoft public repo	High	Direct
+O-003	GitHub	Hardcoded DB password in commit history	High	Direct				
+O-014	GitHub	.env file with AWS keys in old repo	High	Direct				
+O-022	GitHub	CI/CD pipeline secrets in YAML	High	Direct				
+O-040	GitHub	Terraform state file with secrets	High	Direct				
+O-047	GitHub	Hardcoded JWT secret in mobile repo	High	Direct				
+O-054	GitHub	Backup script reveals NAS paths/creds	High	Direct				
+O-073	GitHub	Ansible playbook with vault password file	High	Direct				
+O-080	GitHub	Secrets in Jenkins job config XML	High	Direct				
+O-085	GitHub	Old SSH private key committed	High	Direct				
+O-091	GitHub	Mobile push service API tokens	High	Direct				
+
+
+Risk
+Critical
+Business Impact
+Compromise of cloud infrastructure, databases, CI/CD pipelines, and administrative systems.
+Recommendation
+Rotate all exposed secrets.
+Remove credentials from repositories.
+Implement secret scanning.
+Enforce GitHub push protection.
+
+Finding OSINT-02
+Publicly Accessible Administrative Services
+Related Findings
+	O-004	Shodan	api-gw exposed on 203.0.113.15 port 3000	Medium	Direct				
+	O-005	Shodan	FortiGate VPN banner version 6.4.3	High	Direct				
+	O-013	Shodan	Exchange server OWA exposed	High	Direct				
+	O-018	Shodan	MongoDB instance no auth flagged	High	Direct				
+	O-024	Shodan	RDP exposed jump-host 3389	High	Direct				
+	O-028	Shodan	Elasticsearch cluster exposed	High	Direct				
+	O-035	Shodan	Hikvision NVR exposed default port	Medium	Direct				
+	O-041	Shodan	Jenkins instance exposed login	High	Direct				
+	O-048	Shodan	GitLab instance version disclosed	Medium	Direct				
+	O-053	Shodan	Confluence instance exposed	Medium	Direct				
+	O-058	Shodan	Roundcube webmail login exposed	Medium	Direct				
+	O-063	Shodan	Moodle LMS instance version 3.9 exposed	Medium	Direct				
+	O-068	Shodan	Kibana dashboard exposed no auth	High	Direct				
+	O-074	Shodan	Proctoring server exposed on 203.0.113.53	Medium	Direct				
+	O-081	Shodan	Memcached instance exposed	Medium	Direct				
+	O-086	Shodan	RabbitMQ management UI exposed	Medium	Direct				
+	O-099	Shodan	Squid proxy exposed externally	Medium	Direct				
+	O-105	Shodan	Grafana dashboard exposed login	Low	Direct				
+	O-110	Shodan	SonarQube instance exposed	Low	Direct				
+
+
+Risk
+High
+
+Finding OSINT-03
+Public Information Disclosure through Search Engines
+Related Findings
+	O-001	Google Dorking	Exposed config file portal-web01 with DB string	High	Direct				
+	O-010	Google Dorking	Indexed PDF with internal IP scheme	Medium	Direct				
+	O-017	Google Dorking	Exposed backup .sql file indexed	High	Direct				
+	O-026	Google Dorking	Login portal with default error disclosure	Medium	Direct				
+	O-032	Google Dorking	phpinfo() page indexed	Medium	Direct				
+	O-037	Google Dorking	Directory listing of /uploads exposed	Medium	Direct				
+	O-043	Google Dorking	Exposed .git folder on web root	High	Direct				
+	O-050	Google Dorking	Exposed Swagger/OpenAPI docs	Medium	Direct				
+	O-056	Google Dorking	Exposed login portal for exam system indexed	Medium	Direct				
+	O-064	Google Dorking	Indexed spreadsheet with employee IDs	High	Direct				
+	O-071	Google Dorking	Exposed log file with session tokens	High	Direct				
+	O-077	Google Dorking	Exposed phpMyAdmin login page	High	Direct				
+	O-083	Google Dorking	Exposed grievance portal admin docs	Medium	Direct				
+	O-089	Google Dorking	Indexed medical portal patient form	High	Direct				
+	O-098	Google Dorking	Exposed transport portal route data	Low	Direct				
+	O-104	Google Dorking	Exposed survey server admin login	Low	Direct				
+
+
+Risk
+High
+
+Finding OSINT-04
+Source Code and Repository Exposure
+Related Findings
+	O-002	GitHub	Leaked API key in CampusSoft public repo	High	Direct				
+	O-003	GitHub	Hardcoded DB password in commit history	High	Direct				
+	O-022	GitHub	CI/CD pipeline secrets in YAML	High	Direct				
+	O-034	GitHub	Mobile app APK reverse-engineered endpoints	High	Direct				
+	O-040	GitHub	Terraform state file with secrets	High	Direct				
+	O-047	GitHub	Hardcoded JWT secret in mobile repo	High	Direct				
+	O-054	GitHub	Backup script reveals NAS paths/creds	High	Direct				
+	O-057	GitHub	Database migration script with schema details	Medium	Direct				
+	O-062	GitHub	Payment integration code with test keys	High	Direct				
+	O-067	GitHub	Dockerfile reveals internal registry URL	Medium	Direct				
+	O-073	GitHub	Ansible playbook with vault password file	High	Direct				
+	O-095	GitHub	Backup cron job reveals retention + paths	Medium	Direct				
+	O-101	GitHub	LMS plugin source with hardcoded path	Low	Direct				
+	O-106	GitHub	Kafka integration config with broker IPs	Medium	Direct				
+
+
+
+Finding OSINT-05
+Infrastructure Enumeration
+Related Findings
+	O-011	DNS Records	Subdomain enumeration: 42 subdomains	Medium	Direct				
+	O-012	Certificate Transparency	dev/staging subdomains revealed	Medium	Direct				
+	O-023	WHOIS	Domain registrant contact + phone	Medium	Indirect				
+	O-029	crt.sh	Wildcard cert reveals naming convention	Low	Indirect				
+	O-039	DNS Records	MX records reveal mail infrastructure	Low	Indirect				
+	O-045	crt.sh	Internal hostname leaked via cert SAN	Medium	Direct				
+	O-061	crt.sh	Payment gateway subdomain discovered	High	Direct				
+	O-072	crt.sh	DR site subdomain (dr.*) discovered	Medium	Direct				
+	O-076	DNS Records	TXT records reveal third-party services	Low	Indirect				
+	O-082	crt.sh	Internal naming scheme (-prod, -staging)	Low	Indirect				
+	O-100	crt.sh	Wildcard cert reveals all subdomains pattern	Medium	Direct				
+	O-107	crt.sh	Feedback portal subdomain found	Low	Direct				
+
+
+
+Finding OSINT-06
+Employee Information Exposure
+Related Findings
+	O-006	LinkedIn	IT-Infra admin name + email format	Medium	Indirect				
+	O-007	LinkedIn	Finance-IT staff list (8 employees)	Medium	Indirect				
+	O-015	LinkedIn	Job posting reveals tech stack (Node, MySQL)	Low	Indirect				
+	O-025	Job Portal	Resume of ex-employee lists internal tools	Medium	Indirect				
+	O-030	LinkedIn	Org chart of IT department reconstructable	Medium	Indirect				
+	O-038	LinkedIn	New hire announcement (helpdesk creds pattern)	Low	Indirect				
+	O-049	LinkedIn	Security team size + tooling inferred	Medium	Indirect				
+	O-060	LinkedIn	Placement officer contact + portal mention	Low	Indirect				
+	O-070	LinkedIn	Vendor-FaceAttend engineer lists kiosk details	Medium	Indirect				
+	O-079	LinkedIn	HR-IT staff reveals payroll software vendor	Low	Indirect				
+	O-088	LinkedIn	Research dept staff + HPC cluster mention	Low	Indirect				
+	O-097	LinkedIn	Facilities staff mentions HVAC/BMS vendor	Low	Indirect				
+	O-103	LinkedIn	IT manager profile lists exact firewall model	Medium	Indirect				
+
+
+
+Finding OSINT-07
+Archived Information Leakage
+Related Findings
+	O-009	Wayback Machine	Old admin login page URL structure	Low	Indirect				
+	O-046	Wayback Machine	Old API docs with deprecated endpoints	Medium	Indirect				
+	O-065	Wayback Machine	Archived page reveals old admin panel	Medium	Indirect				
+	O-093	Wayback Machine	Old scholarship portal with form fields	Medium	Indirect				
+	O-109	Wayback Machine	Archived staff directory page	Medium	Indirect				
+
+
+Finding OSINT-08
+Public Discussion and Social Media Intelligence
+Related Findings
+	O-016	Twitter/X	Staff tweet mentions ERP vendor name	Low	Indirect				
+	O-021	Facebook	Student group reveals portal URL	Low	Indirect				
+	O-031	Reddit	User complains about specific ERP bug	Low	Indirect				
+	O-036	YouTube	Campus tour video shows badge/RFID system	Low	Indirect				
+	O-044	Twitter/X	Vendor announces deployment date	Low	Indirect				
+	O-052	Forum	Student shares working portal exploit	Medium	Direct				
+	O-066	Twitter/X	IT staff tweets about migration to AWS	Low	Indirect				
+	O-075	Forum	Reverse-engineered mobile API discussion	Medium	Direct				
+	O-084	YouTube	Webinar reveals network architecture slide	Medium	Indirect				
+	O-094	Twitter/X	Student posts screenshot of internal dashboard	Medium	Direct				
+
+Finding OSINT-09
+Publicly Available Sensitive Documents
+Related Findings
+	O-010	Google Dorking	Indexed PDF with internal IP scheme	Medium	Direct				
+	O-020	Google Maps	Building layout / server room photos	Low	Indirect				
+	O-042	Pastebin	Internal phone directory leaked	Medium	Direct				
+	O-059	Pastebin	Leaked student roll-number list	High	Direct				
+	O-064	Google Dorking	Indexed spreadsheet with employee IDs	High	Direct				
+	O-083	Google Dorking	Exposed grievance portal admin docs	Medium	Direct				
+	O-087	Pastebin	Leaked database of alumni emails	Medium	Direct				
+	O-089	Google Dorking	Indexed medical portal patient form	High	Direct				
+	O-098	Google Dorking	Exposed transport portal route data	Low	Direct				
+	O-102	Pastebin	Leaked helpdesk ticket export	Medium	Direct				
+
+
+
+Finding OSINT-10
+Legacy Infrastructure Disclosure
+Related Findings
+	O-005	Shodan	FortiGate VPN banner version 6.4.3	High	Direct				
+	O-013	Shodan	Exchange server OWA exposed	High	Direct				
+	O-035	Shodan	Hikvision NVR exposed default port	Medium	Direct				
+	O-048	Shodan	GitLab instance version disclosed	Medium	Direct				
+	O-053	Shodan	Confluence instance exposed	Medium	Direct				
+	O-058	Shodan	Roundcube webmail login exposed	Medium	Direct				
+	O-063	Shodan	Moodle LMS instance version 3.9 exposed	Medium	Direct				
+	O-074	Shodan	Proctoring server exposed on 203.0.113.53	Medium	Direct				
+	O-092	Shodan	Jitsi video conf server exposed	Low	Direct				
+	O-099	Shodan	Squid proxy exposed externally	Medium	Direct				
+
+5 Initial Engagement Review
+Discuss
+Positive
+Public systems accessible.
+Good certificate deployment.
+Weaknesses
+Sensitive provide attackers with immediate access to critical systems, cloud resources, databases, and CI/CD pipelines, enabling rapid compromise without exploiting software Jenkins, GitLab, MongoDB, Elasticsearch, and RDP greatly increase the attack surface. Attackers can exploit known vulnerabilitiesing a centralized IAM solution with secure secret storage, enforced MFA, privileged access management, and credential rotation would significantly reduce the likelihood of compromise across multiple attack vectors while providing the greatest overall reduction in sensitive infrastructure information, credentials, and administrative services through publicly accessible sources. Several high-risk vulnerabilities could allow attackers to access confidential student information without requiring insider assistance. Weak authentication controls, exposed secrets, and unpatched internet-facing systems present the greatest business risks. Immediate remediation should prioritize credential management, access control improvements, and securing exposed services. Addressing these issues repositories public.
+No secret management.
+Multiple exposed admin interfaces.
+Public documents indexed.
+Recommendations
+Enable
+Secret Scanning
+GitHub Advanced Security
+Robots.txt
+Remove indexed files
+Disable directory listing
+
+6 Final Engagement Review
+After remediation
+Expected Improvements
+Reduced exposed assets
+Credential rotation
+Reduced attack surface
+Better monitoring
+
+7 Compliance Mapping
+Finding
+OWASP
+NIST
+ISO27001
+MITRE
+
+GitHub Secrets
+A05
+SI-7
+A.8
+T1552
+
+Exposed MongoDB
+A05
+AC-3
+A.8
+T1190
+
+Swagger Docs
+A01
+CM-7
+A.12
+T1595
+
+Exposed .git
+A05
+SI-10
+A.14
+T1580
+
+Leaked Credentials
+A07
+IA-5
+A.9
+T1552
+
+8 Approval
+Name
+Role
+Signature
+Team Lead
+Student
+
+
+Faculty Guide
+Supervisor
+
+
+Client Representative
+CISO
+
+
+
+
+Executive Questions
+Q1. Based on the OSINT and vulnerability data, which three issues would you fix first and why?
+1. Exposed Secrets and Credentials (GitHub, Pastebin, Terraform, API Keys)
+Business Impact: These exposures provide attackers with immediate access to critical systems, cloud resources, databases, and CI/CD pipelines, enabling rapid compromise without exploiting software vulnerabilities. Credential theft can lead to data breaches, ransomware deployment, and unauthorized administrative access.
+2. Broken Authentication and Authorization in the Mobile API
+Business Impact: The API allows unauthenticated access to student records and insecure direct object references (IDOR), exposing sensitive student information such as personal details, academic records, and attendance. This creates significant privacy, legal, and reputational risks.
+3. Internet-Exposed Administrative Services
+Business Impact: Publicly accessible services such as VPN, Jenkins, GitLab, MongoDB, Elasticsearch, and RDP greatly increase the attack surface. Attackers can exploit known vulnerabilities or weak authentication to gain an initial foothold, potentially leading to full network compromise.
+
+Q2. Build the most realistic attack chain. Could an external attacker reach student records without insider help?
+Yes. Based on the available evidence, an external attacker could likely access student records without insider assistance through the following attack chain:
+Conduct OSINT to discover exposed subdomains, public repositories, and technology stack information.
+Obtain leaked API keys or credentials from GitHub or Pastebin.
+Enumerate public services using Shodan and identify vulnerable VPNs, GitLab, or Jenkins instances.
+Exploit exposed services or authenticate using leaked credentials.
+Access the public API and exploit missing authentication on /v1/students.
+Abuse the IDOR vulnerability to enumerate student records sequentially.
+Extract student information including personal details, grades, attendance, and hostel assignments.
+This attack chain requires no insider knowledge and relies solely on publicly available information and exposed vulnerabilities.
+
+Q3. The CISO has budget for only ONE major control this quarter. Recommend it and justify.
+Recommendation: Implement a centralized Identity and Access Management (IAM) and Secrets Management solution integrated with Multi-Factor Authentication (MFA).
+Justification: Many of the identified risks stem from poor credential management, exposed secrets, weak authentication, and unrestricted administrative access. Deploying a centralized IAM solution with secure secret storage, enforced MFA, privileged access management, and credential rotation would significantly reduce the likelihood of compromise across multiple attack vectors while providing the greatest overall reduction in organizational risk.
+
+Q4. Five-line executive summary for the Vice Chancellor
+The assessment identified a broad external attack surface that exposes sensitive infrastructure information, credentials, and administrative services through publicly accessible sources. Several high-risk vulnerabilities could allow attackers to access confidential student information without requiring insider assistance. Weak authentication controls, exposed secrets, and unpatched internet-facing systems present the greatest business risks. Immediate remediation should prioritize credential management, access control improvements, and securing exposed services. Addressing these issues will substantially strengthen the institution's security posture and reduce the likelihood of data breaches and operational disruption.
+
 
 Overall Risk Rating
 Category
